@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
+    //if you want variables you can change in Unity, place them here!!
+
     public float moveSpeed; //determines how fast player moves
     private Rigidbody myRigidBody;  //apply forces so player can move around
 
@@ -14,6 +16,8 @@ public class PlayerController : MonoBehaviour {
     private Camera mainCamera;
 
     public GunController theGun;
+
+    public Crosshairs crosshairs;
 
 	// Use this for initialization
 	void Start () {
@@ -39,9 +43,10 @@ public class PlayerController : MonoBehaviour {
             Vector3 pointToLook = cameraRay.GetPoint(rayLength);
             Debug.DrawLine(cameraRay.origin, pointToLook, Color.blue);
 
-            //make player look at what we (the mouse) is pointing at
+            //make player look at what we (the mouse) is pointing at. Does this for crosshairs as well
             transform.LookAt(new Vector3(pointToLook.x, transform.position.y, pointToLook.z));
-
+            crosshairs.transform.position = new Vector3(pointToLook.x, transform.position.y, pointToLook.z);
+            crosshairs.Detect(cameraRay);
         }
 
         //left mouse button to fire

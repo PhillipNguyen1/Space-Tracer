@@ -38,4 +38,5 @@ public class GunController : MonoBehaviour {
             shotCounter = 0;
         }
 	}
+    
 }
